@@ -13,11 +13,15 @@ local function getWallwalk(self)
     end
 
     local success, setEnabled = pcall(function()
-        return self.fetchService.load('backups/wallwalker.luau', 'iy/wallwalker')()
+        local chunk, err = self.fetchService.load('backups/wallwalker.luau', 'iy/wallwalker')
+        assert(type(chunk) == 'function', err or 'Wallwalk source is unavailable')
+        local controller = chunk()
+        assert(type(controller) == 'function', 'Wallwalk did not return a controller')
+        return controller
     end)
 
     if not success then
-        self:notify('Wallwalk', 'failed to fetch script')
+        self:notify('Wallwalk', 'could not load: ' .. tostring(setEnabled))
 
         return
     end

@@ -1,5 +1,5 @@
 local continuation = ...
-local STARTUP_REVISION = "ee11e593fd882a83bd0a793af420844ff5c66a810737485a0a26410a79baf736"
+local STARTUP_REVISION = "3be2087791709deeb953ed0df5675a055ee16edcde1b2dc60803da8e958abec4"
 local host = (getgenv and getgenv()) or getfenv()
 local root = host.XLQP_ROOT or "xlqp"
 local baseUrl = host.XLQP_BASE_URL or "https://raw.githubusercontent.com/josediaz765/xlqp/main/"

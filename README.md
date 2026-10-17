@@ -57,13 +57,17 @@ Run `python tools/test_input.py --runtime luau` for keyboard/mobile signal-fixtu
 
 Optional downloads run through a normal resource lookup function, allowing HTTP to yield without crossing a metamethod boundary. Run `python tools/test_resources.py --runtime luau` to check yielding Cobalt loads, caching, aliases, retries, and concurrent callers.
 
+The emote menu applies its configuration before binding keys: a missing or invalid key uses Period (`.`), and a failed launch does not mark it as running. Desktop launches also clear a stale running flag when the menu key binding is absent. Optional tool commands report success after their initializer returns, capture download/compile/initialization failures in the command error log, reject overlapping launches of the same tool, and allow retry after failure. Emote dependencies propagate failures instead of returning empty placeholder functions. Wallwalk validates its controller before caching it.
+
+Run `python tools/test_optional.py --runtime luau` to exercise the actual emote configuration/keybinding, dependency loader, all seven tool launch variants, and Wallwalk with fault injection. These tests use Roblox service mocks. They cover synchronous initialization and yielding downloads; third-party background callbacks and live game behavior require in-game testing.
+
 Dex API-dump URLs beginning with `version-` resolve to JSON snapshots; only the exact setup `/version` endpoint resolves to version text. API-dump query strings and full dumps are covered by the resource regression checks. The full loader check also validates the real API snapshot and its routing.
 
 Run `python tools/test_startup.py --runtime luau --expect-fast` to check startup requests, repeat execution, lazy optional tools, teleport continuations, cache isolation, and recovery after failed downloads. The startup corpus fixture requests all 303 application modules and 23 interface assets through the actual loader and resolver while replacing Roblox module execution with stubs. It uses 1 cold request and 0 repeat requests, compared with 328 each before the change; the outer loadstring request is excluded. These counts are fixture measurements, not in-game timing measurements.
 
 Roblox and the executor APIs used by the project are required. The local mode uses repository files without source downloads. Roblox models, animations, thumbnails, gameplay services, and optional external decompiler services retain their live-service behavior. Catalog and engine metadata snapshots remain fixed until updated.
 
-All 368 source files compile. Hosted/local loader fixtures cover 430 resource mappings, 361 lazy source files, and teleport continuations. UI startup is intercepted in those fixtures; in-game behavior has not been tested. See `VERIFICATION.txt`. With the Luau command-line compiler and runtime installed, run `python tools/verify.py --compiler luau-compile --runtime luau` to repeat the checks.
+All 369 source files compile. Hosted/local loader fixtures cover 430 resource mappings, 361 lazy source files, 15 literal nested script URLs outside the historical legacy source, and teleport continuations. UI startup is intercepted in those fixtures; in-game behavior has not been tested. See `VERIFICATION.txt`. With the Luau command-line compiler and runtime installed, run `python tools/verify.py --compiler luau-compile --runtime luau` to repeat the checks.
 
 The upstream `f3x` command has no configured script source; that existing behavior is preserved.
 

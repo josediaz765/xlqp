@@ -1,4 +1,5 @@
-local config = ... or {}
+local suppliedConfig = ...
+local config = if type(suppliedConfig) == 'table' then suppliedConfig else {}
 local DEFAULT_CONFIG = {
     keycode = Enum.KeyCode.Period,
     isMobile = false,
@@ -16,23 +17,41 @@ local function handleConfig()
     end
 
     if type(config.keycode) == 'string' then
-        config.keycode = Enum.KeyCode[config.keycode] or DEFAULT_CONFIG.keycode
+        local ok, key = pcall(function() return Enum.KeyCode[config.keycode] end)
+        config.keycode = if ok then key else DEFAULT_CONFIG.keycode
+    end
+    if typeof(config.keycode) ~= 'EnumItem' or config.keycode.EnumType ~= Enum.KeyCode or config.keycode == Enum.KeyCode.Unknown then
+        config.keycode = DEFAULT_CONFIG.keycode
+    end
+    config.isMobile = config.isMobile == true
+end
+
+handleConfig()
+
+local Notify = if type(config.notifyFunction) == 'function' then config.notifyFunction else function() end
+
+local alreadyRunning = _G.EmotesGUIRunning
+
+if alreadyRunning and not config.isMobile then
+    local ok, binding = pcall(function()
+        return game:GetService('ContextActionService'):GetBoundActionInfo('7yd7_OpenEmoteKey')
+    end)
+    if ok and (type(binding) ~= 'table' or next(binding) == nil) then
+        alreadyRunning = false
     end
 end
 
-local Notify = assert(config.notifyFunction, 'missing notify function')
-
-if _G.EmotesGUIRunning then
+if alreadyRunning then
     Notify({
         Title = '7yd7 | Emote',
-        Content = '\u{26a0}\u{fe0f} It works It actually works',
+        Content = 'The emote menu is already running',
         Duration = 5,
     })
 
     return
 end
 
-_G.EmotesGUIRunning = true
+_G.EmotesGUIRunning = nil
 
 local offsaleAnimationJson = true
 local HttpService = game:GetService('HttpService')
@@ -850,29 +869,25 @@ function SafeLoad(url, name)
     end
 
     if not success or not content or content == '' then
-        getgenv().Notify({
+        Notify({
             Title = '7yd7 | Error',
             Content = 'Failed to download ' .. (name or 'script') .. ' after 3 attempts.',
             Duration = 5,
         })
 
-        return function() end
+        error('7yd7 | Failed to download ' .. (name or 'script') .. ': ' .. tostring(content), 2)
     end
 
     local func, err = loadstring(content)
 
     if not func then
-        warn('7yd7 | SafeLoad: Failed to parse ' .. (name or 'script') .. ': ' .. tostring(err))
-
-        return function() end
+        error('7yd7 | Failed to parse ' .. (name or 'script') .. ': ' .. tostring(err), 2)
     end
 
     local ok, res = pcall(func)
 
     if not ok then
-        warn('7yd7 | SafeLoad: Error executing ' .. (name or 'script') .. ': ' .. tostring(res))
-
-        return function() end
+        error('7yd7 | Failed to initialize ' .. (name or 'script') .. ': ' .. tostring(res), 2)
     end
 
     return res
@@ -11599,3 +11614,5 @@ if config.isMobile then
 else
     setupPCKeybind()
 end
+
+_G.EmotesGUIRunning = true

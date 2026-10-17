@@ -1,11 +1,17 @@
 local SLOW_LOAD = 3
+local loading = {}
 
-local function fetchScript(self, label, path, chunkName, quiet)
-    if not quiet then
-        self:notify(label, 'started loading')
+local function fetchScript(self, label, path, chunkName, ...)
+    if loading[path] then
+        self:notify(label, 'is already loading')
+        return
     end
 
+    loading[path] = true
+    self:notify(label, 'started loading')
+
     local finished = false
+    local arguments = table.pack(...)
 
     task.delay(SLOW_LOAD, function()
         if not finished then
@@ -13,74 +19,63 @@ local function fetchScript(self, label, path, chunkName, quiet)
         end
     end)
 
-    local chunk = self.fetchService.load(path, chunkName)
+    local trace
+    local success, result = xpcall(function()
+        local chunk, err = self.fetchService.load(path, chunkName)
+        assert(type(chunk) == 'function', err or ('No executable source for ' .. path))
+        return chunk(table.unpack(arguments, 1, arguments.n))
+    end, function(err)
+        trace = debug.traceback(tostring(err), 2)
+        return err
+    end)
 
     finished = true
+    loading[path] = nil
 
-    if chunk == nil then
-        self:notify(label, 'could not be loaded')
-    elseif not quiet then
-        self:notify(label, 'finished loading')
-    end
-
-    return chunk
-end
-local function oldConsole(self)
-    local chunk = fetchScript(self, 'Old Console', 'backups/oldconsole.luau', 'iy/oldconsole')
-
-    if chunk then
-        chunk()
-    end
-end
-local function dexExplorer(self, byMoon)
-    local chunk
-
-    if byMoon == true then
-        chunk = fetchScript(self, 'Dex Explorer', 'backups/explorer.luau', 'iy/explorer')
-    else
-        chunk = fetchScript(self, 'Dex Explorer', 'backups/dexPlusPlus.luau', 'iy/dexPlusPlus')
-    end
-    if chunk then
-        chunk()
-    end
-end
-local function emoteMenu(self, args)
-    local notifyChunk = fetchScript(self, 'Emote Menu', 'backups/emotes/notify.luau', 'iy/7yd7/notify.luau', true)
-    local notify = notifyChunk and notifyChunk() or function() end
-    local keycode = args:nextValue()
-    local notifyEnabled = args:nextValue()
-    local main = fetchScript(self, 'Emote Menu', 'backups/emotes/main.luau', 'iy/7yd7/emotes.luau')
-
-    if not main then
+    if not success then
+        if type(self.reportError) == 'function' then
+            self:reportError(label, result, trace)
+        else
+            self:notify(label, 'failed: ' .. tostring(result))
+        end
         return
     end
 
-    main({
-        notifyFunction = if notifyEnabled ~= false then notify else function() end,
+    self:notify(label, 'finished loading')
+    return result
+end
+local function oldConsole(self)
+    fetchScript(self, 'Old Console', 'backups/oldconsole.luau', 'iy/oldconsole')
+end
+local function dexExplorer(self, byMoon)
+    if byMoon == true then
+        fetchScript(self, 'Dex Explorer', 'backups/explorer.luau', 'iy/explorer')
+    else
+        fetchScript(self, 'Dex Explorer', 'backups/dexPlusPlus.luau', 'iy/dexPlusPlus')
+    end
+end
+local function emoteMenu(self, args)
+    local keycode = args:nextValue()
+    local notifyEnabled = args:nextValue()
+
+    fetchScript(self, 'Emote Menu', 'backups/emotes/main.luau', 'iy/7yd7/emotes.luau', {
+        notifyFunction = function(options)
+            if notifyEnabled ~= false then
+                self:notify(options.Title or 'Emote Menu', options.Content or '')
+            end
+        end,
         isMobile = self.isMobile,
         keycode = keycode,
     })
 end
 local function cobaltSpy(self)
-    local chunk = fetchScript(self, 'Cobalt', 'backups/cobalt.luau', 'iy/cobalt')
-
-    if chunk then
-        chunk()
-    end
+    fetchScript(self, 'Cobalt', 'backups/cobalt.luau', 'iy/cobalt')
 end
 local function remoteSpy(self)
-    local chunk = fetchScript(self, 'Remote Spy', 'backups/remotespy/main.luau', 'iy/remotespy')
-
-    if chunk then
-        chunk()
-    end
+    fetchScript(self, 'Remote Spy', 'backups/remotespy/main.luau', 'iy/remotespy')
 end
 local function audioLogger(self)
-    local chunk = fetchScript(self, 'Audio Logger', 'backups/audiologger.luau', 'iy/audiologger')
-
-    if chunk then
-        chunk()
-    end
+    fetchScript(self, 'Audio Logger', 'backups/audiologger.luau', 'iy/audiologger')
 end
 
 return {

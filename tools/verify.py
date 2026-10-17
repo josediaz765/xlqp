@@ -1,5 +1,5 @@
 from pathlib import Path
-import argparse,json,subprocess
+import argparse,json,re,subprocess
 
 REPO=Path(__file__).resolve().parent.parent
 parser=argparse.ArgumentParser()
@@ -33,6 +33,15 @@ def literal(data):
         return '"'+''.join(chr(b) if 32<=b<127 and b not in (34,92) else '\\%03d'%b for b in data)+'"'
 
 parts=['local vfs = {}\n']
+download_pattern=re.compile(r'''(?:__XLQP_HTTP\s*\(\s*\w+\s*,|SafeLoad\s*\()\s*(?:'([^']+)'|"([^"]+)"|\[(=*)\[(.*?)\]\3\])''',re.S)
+download_urls=set()
+for folder in ('backups','vendor'):
+    for p in (REPO/folder).rglob('*'):
+        if p.suffix not in ('.lua','.luau') or 'legacy' in p.relative_to(REPO).parts:continue
+        for match in download_pattern.finditer(p.read_text(encoding='utf-8')):
+            url=match[1] or match[2] or match[4]
+            if re.search(r'\.luau?(?:\?|$)',url):download_urls.add(url)
+parts.append('local downloadUrls = {'+','.join(literal(url.encode()) for url in sorted(download_urls))+'}\n')
 for p in sorted(REPO.rglob('*')):
     if not p.is_file() or '.git' in p.relative_to(REPO).parts or 'work' in p.relative_to(REPO).parts:continue
     key=p.relative_to(REPO).as_posix()
@@ -87,6 +96,12 @@ local function check(localMode)
         local chunk, err = resources.load(key)
         assert(type(chunk) == "function", key .. ": " .. tostring(err))
     end
+    for _, url in downloadUrls do
+        local body = resources.lookup(url)
+        assert(type(body)=='string' and #body>0, 'Missing nested script dependency: ' .. url)
+        assert(nativeLoad(body), 'Invalid nested script dependency: ' .. url)
+    end
+    print('PASS: ' .. #downloadUrls .. ' literal nested script URLs resolve to compilable repository snapshots')
     assert(resources.lookup('assets/logo.png'):sub(1,8) == "\137PNG\r\n\26\n")
     assert(resources.lookup('http://setup.roblox.com/version-test-API-Dump.json') == resources.lookup('snapshot/api'), 'Dex received version text instead of API JSON')
     assert(resources.lookup('https://setup.roblox.com/version-test-Full-API-Dump.json?cache=1') == resources.lookup('snapshot/full-api'))

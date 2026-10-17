@@ -1,3 +1,48 @@
+LATEST: EMOTE CONFIGURATION AND OPTIONAL TOOL INITIALIZATION
+Changed branch/fields: main / emote default key, enum validation, running guard, dependency failures; optional tool initialization/error reporting, overlapping launch guard, retry and slow timer completion; Wallwalk source/controller validation; generated startup revision 3be2087791709dee.
+Baseline commit: 1366747eadf99358e440cc6c92a319ab2df8d6b1
+Input: screenshot setupPCKeybind nil.Name failure; actual emote preamble/keybind/dependency functions and actual tool command modules tested with Roblox service/task/HTTP mocks.
+Result: missing/invalid key falls back to Period; genuine active desktop binding preserves running guard; stale flag clears; success is reported only after initializer returns. Failed initialization leaves the running flag unset. Optional command errors use the existing controller error log. Each failed command can retry. No claim is made that all third-party background callbacks or executor/game-specific APIs have been tested.
+No live Roblox/physical device testing performed. Historical legacy script URLs are excluded from the active nested dependency check. The existing F3X source remains unconfigured as documented.
+The current checkout retains the fixes. Rollback is tested in a different directory and restores all four original SHA256 values; the original failures return there as expected.
+Plain loadstring:
+loadstring(game:HttpGet("https://raw.githubusercontent.com/josediaz765/xlqp/main/loader.luau"))()
+
+MODIFIED / python tools/test_optional.py --runtime C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau.exe
+PASS: actual emote config/keybind; omitted/invalid/valid keys; mobile selection; textbox isolation; stale running guard
+PASS: actual emote dependency loader; successful library; download/empty/parse/initialization failures propagate; retries
+PASS: all 7 tool launch variants; initialization before success; download/compile/runtime errors; retry; overlapping yielding loads; timer cleanup
+PASS: actual Wallwalk loader; download/compile/initialization errors; invalid controller; successful controller cache
+Exit status: 0
+MODIFIED / python tools/verify.py --compiler C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau-compile.exe --runtime C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau.exe
+PASS: startup payload matches 328 files; 1077568 bytes; revision=3be2087791709dee
+PASS: 369 source files compile; XLQP branding; upstream notice preserved under LICENSES
+PASS: 15 literal nested script URLs resolve to compilable repository snapshots
+PASS: local loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=0
+PASS: 15 literal nested script URLs resolve to compilable repository snapshots
+PASS: hosted loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=99
+Exit status: 0
+MODIFIED / python tools/test_startup.py --runtime C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau.exe --expect-fast
+MEASURE: startup corpus (303 modules, 23 assets); cold HTTP=1; repeat HTTP=0; outer loader request excluded
+PASS: one startup download; warm source cache; lazy optional scripts; teleport; base isolation; HTTP/payload retry
+PASS: local loader remains offline
+Exit status: 0
+MODIFIED / python tools/test_input.py --runtime C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau.exe
+PASS: keyboard input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+PASS: mobile input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+Exit status: 0
+MODIFIED / python tools/test_input.py --runtime C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau.exe --case filter
+PASS: keyboard live command filtering, aliases, literal text, empty results, clear/reset, filtered scrolling
+PASS: mobile live command filtering, aliases, literal text, empty results, clear/reset, filtered scrolling
+Exit status: 0
+MODIFIED / python tools/test_resources.py --runtime C:\Users\nuvia\Documents\Codex\2026-10-17\okay-can-you-give-me-this\work\tools\luau\luau.exe
+PASS: yielding Cobalt fetch/load; aliases and cache; empty/missing files; network retry; concurrent callers
+PASS: Dex version-prefixed API URLs return JSON; full dump/query strings; plain version endpoint remains text
+Exit status: 0
+
+Baseline/rollback: four targeted regression checks fail as expected; restored original hashes match. Detailed local outputs are saved in XLQP-OPTIONAL-VERIFICATION.txt outside the repository.
+
+PREVIOUS RECORDS
 LATEST: DISCORD INVITE AND FRESH PUBLIC REPOSITORY
 Changed branch/fields: main / Discord link https://discord.gg/dFpeqN4UHk; README loadstring uses the plain loader.luau URL; current generated package revision ee11e593fd882a83. The repository is recreated with one parentless initial commit after validation and a local history backup. Only the latest startup package is retained in this fresh repository.
 
