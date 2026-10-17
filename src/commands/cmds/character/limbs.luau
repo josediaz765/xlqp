@@ -1,0 +1,72 @@
+local function destroyParts(character, names)
+    for _, name in names do
+        local part = character:FindFirstChild(name)
+
+        if part then
+            part:Destroy()
+        end
+    end
+end
+local function isR15(self)
+    local humanoid = self.playerService:getHumanoid()
+
+    return humanoid ~= nil and humanoid.RigType == Enum.HumanoidRigType.R15
+end
+
+return {
+    {
+        action = 'noarms|rarms',
+        description = 'Removes your arms',
+        run = function(self)
+            local character = self.localPlayer.Character
+
+            if character then
+                destroyParts(character, isR15(self) and {
+                    'RightUpperArm',
+                    'LeftUpperArm',
+                } or {
+                    'Right Arm',
+                    'Left Arm',
+                })
+            end
+        end,
+    },
+    {
+        action = 'nolegs|rlegs',
+        description = 'Removes your legs',
+        run = function(self)
+            local character = self.localPlayer.Character
+
+            if character then
+                destroyParts(character, isR15(self) and {
+                    'RightUpperLeg',
+                    'LeftUpperLeg',
+                } or {
+                    'Right Leg',
+                    'Left Leg',
+                })
+            end
+        end,
+    },
+    {
+        action = 'nolimbs|rlimbs',
+        description = 'Removes your limbs',
+        run = function(self)
+            local character = self.localPlayer.Character
+
+            if character then
+                destroyParts(character, isR15(self) and {
+                    'RightUpperLeg',
+                    'LeftUpperLeg',
+                    'RightUpperArm',
+                    'LeftUpperArm',
+                } or {
+                    'Right Leg',
+                    'Left Leg',
+                    'Right Arm',
+                    'Left Arm',
+                })
+            end
+        end,
+    },
+}

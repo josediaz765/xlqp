@@ -1,0 +1,15 @@
+return {
+    defaultTime = 10,
+    defaultTitle = 'Notification',
+    size = UDim2.fromOffset(250, 100),
+    cornerRadius = 6,
+    titleHeight = 20,
+    iconSize = 15,
+    titleTextSize = 16,
+    textSize = 14,
+    padding = 8,
+    tweenTime = 0.5,
+    flashTime = 0.5,
+    hiddenPosition = UDim2.new(1, -500, 1, 20),
+    shownPosition = UDim2.new(1, -500, 1, -100),
+}

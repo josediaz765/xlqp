@@ -1,0 +1,9 @@
+* text=auto
+*.luau text eol=lf
+*.lua text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.png binary
+*.jpg binary
+*.ttf binary
+runtime/*.luau linguist-generated=true

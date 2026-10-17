@@ -1,0 +1,312 @@
+{
+  "repository": "https://github.com/tlredz/iy-remake",
+  "commit": "b07d157654be3bd65f2235ab1ed1f545f5361f95",
+  "vendor_sources": [
+    {
+      "url": "https://gitlab.com/upio/cobalt/-/releases/permalink/latest/downloads/Cobalt.luau",
+      "resolved_url": "https://gitlab.com/api/v4/projects/upio%2Fcobalt/packages/generic/cobalt/2%2E2%2E5%2E18/Cobalt%2Eluau",
+      "size": 922804,
+      "sha256": "9710330dae2992b83610edcf1b4ad080498001a7cc5e4d62cf3c49d228045bd5"
+    },
+    {
+      "url": "https://github.com/AZYsGithub/DexPlusPlus/releases/download/stable-3.0/out.lua",
+      "resolved_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1017472323/2a6d64a5-8807-494e-829c-a28fd5f3b930?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-17T07%3A29%3A37Z&rscd=attachment%3B+filename%3Dout.lua&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-17T06%3A28%3A39Z&ske=2026-10-17T07%3A29%3A37Z&sks=b&skv=2018-11-09&sig=9U7TKKt3dqUBYEmSDNOo0NDTOEKqVsJZUtjFEyWn%2BtY%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MjIxOTE4NSwibmJmIjoxNzkyMjE4ODg1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.38F4wWTg_FORpbeEGhVjVKf1T4yNQ0GmW8I8L7qf8Do&response-content-disposition=attachment%3B%20filename%3Dout.lua&response-content-type=application%2Foctet-stream",
+      "size": 563947,
+      "sha256": "be78d502e72bc2fedadd10d4f3166f7d5d2b4546575b6e002c7f03a6537ff25e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/luau/SynSaveInstance/main/saveinstance.luau",
+      "resolved_url": "https://raw.githubusercontent.com/luau/SynSaveInstance/main/saveinstance.luau",
+      "size": 201984,
+      "sha256": "73c801a3719a903cb755f83205d11681822c0c1c492376aee7279ee59bc5bf93"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/konstant.lua",
+      "resolved_url": "https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/konstant.lua",
+      "size": 1195,
+      "sha256": "c07af463c50e97f7d1fe9c55c13eb1238317c50cfb4430898308731e635f87d3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/rbx_api.dat",
+      "resolved_url": "https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/rbx_api.dat",
+      "size": 7559477,
+      "sha256": "d93ecace993838655c2c41a555ae7e3792c0e6f74aeaa9b830746d3b57fa374c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/deps_version.dat",
+      "resolved_url": "https://raw.githubusercontent.com/infyiff/backup/refs/heads/main/deps_version.dat",
+      "size": 25,
+      "sha256": "4b8b38ba8bf6069459e994d400ea4ebaf19f7f30e6a86e522d4c9dd886d87362"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/CloneTrooper1019/Roblox-Client-Tracker/roblox/ReflectionMetadata.xml",
+      "resolved_url": "https://raw.githubusercontent.com/CloneTrooper1019/Roblox-Client-Tracker/roblox/ReflectionMetadata.xml",
+      "size": 422440,
+      "sha256": "421eb46149a1d29ca1dd386cd048a8b87fa9fe7631296229f2feb015a04efe31"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/Off-site/Notify.lua",
+      "resolved_url": "https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/Off-site/Notify.lua",
+      "size": 5451,
+      "sha256": "460216543cc1283ba121ef360ddba64e4380dd65f1595182e3014b4d9cacbefc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/Settings.lua",
+      "resolved_url": "https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/Settings.lua",
+      "size": 42630,
+      "sha256": "c881f9ad13349b673be7b30d082affa05728808b792ba3e9b9a8a2eb113ddac8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/OpenEmote.lua",
+      "resolved_url": "https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/OpenEmote.lua",
+      "size": 4025,
+      "sha256": "257d5b41765d11e5e7df3e417a5b995ff58f78dcf9a0cc5db6dc1f0c59edb443"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7yd7/sniper-Emote/refs/heads/test/EmoteSniper.json",
+      "resolved_url": "https://raw.githubusercontent.com/7yd7/sniper-Emote/refs/heads/test/EmoteSniper.json",
+      "size": 4553413,
+      "sha256": "19f5fd9539b3e9971773a9eabf81e00a59e74ce8624a549944572525b8e150a2"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7yd7/sniper-Emote/refs/heads/test/AnimationSniper.json",
+      "resolved_url": "https://raw.githubusercontent.com/7yd7/sniper-Emote/refs/heads/test/AnimationSniper.json",
+      "size": 2988512,
+      "sha256": "2ba35de35ea0a761df06bb1c42adeca9dc1d3249bbba2649e6f27de5ad4c5a7a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7yd7/sniper-Emote/refs/heads/test/AnimationSniperoffsale.json",
+      "resolved_url": "https://raw.githubusercontent.com/7yd7/sniper-Emote/refs/heads/test/AnimationSniperoffsale.json",
+      "size": 3356282,
+      "sha256": "9297382bb6c4277df6a4ca8bbc4508c2c2f51e7f8e53816e682adce29f77b415"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/luau/SomeHub/main/StreamBuffer.luau",
+      "resolved_url": "https://raw.githubusercontent.com/luau/SomeHub/main/StreamBuffer.luau",
+      "size": 2613,
+      "sha256": "51681eb216dc4f0c1c73088dc820972bcac11205cde633e88affa491600ad21e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/luau/SomeHub/main/UniversalMethodFinder.luau",
+      "resolved_url": "https://raw.githubusercontent.com/luau/SomeHub/main/UniversalMethodFinder.luau",
+      "size": 3192,
+      "sha256": "073f17d26a10abcef69f7497b7378793b90ed8e2d80ee48c99599e840297066f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/daily3014/rbx-algorithms/refs/heads/main/src/Encoding/Base64.luau",
+      "resolved_url": "https://raw.githubusercontent.com/daily3014/rbx-algorithms/refs/heads/main/src/Encoding/Base64.luau",
+      "size": 8980,
+      "sha256": "fd10582bfdbef0c4cd858a752901f4a6f00c67316a88c02383fe4fc56639aa46"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RiskoZS/llz4/refs/heads/main/llz4.luau",
+      "resolved_url": "https://raw.githubusercontent.com/RiskoZS/llz4/refs/heads/main/llz4.luau",
+      "size": 12039,
+      "sha256": "9e0adb4f2c0346ba01bdade9d816e09c705e6a4b9f1f74909630972edf7ea74c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/refs/heads/main/source.lua",
+      "resolved_url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/refs/heads/main/source.lua",
+      "size": 113218,
+      "sha256": "eb56e44212113ea60cdbd3bb04ff62eb7b7300aeb71c4fcce809acdd504f4643"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/refs/heads/main/init.lua",
+      "resolved_url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/refs/heads/main/init.lua",
+      "size": 68436,
+      "sha256": "10a20a7ab83a9c5f6b30320f625b47f285a176443d0d51cdefb1670adfe65f7d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/secretisadev/Babyhamsta_Backup/refs/heads/main/Universal/Bypasses.lua",
+      "resolved_url": "https://raw.githubusercontent.com/secretisadev/Babyhamsta_Backup/refs/heads/main/Universal/Bypasses.lua",
+      "size": 8651,
+      "sha256": "9dcdc1360349e42e669e20327b557c9db334b541312ed86ebe5864c8da83cbe9"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua",
+      "resolved_url": "https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua",
+      "size": 79651,
+      "sha256": "e364df5d17f4c81fb6ff5c38955c4c9f96597d0930ed050e746debfc83209b56"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua",
+      "resolved_url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua",
+      "size": 93196,
+      "sha256": "01b43b7623ec4a0683ec66e6e7e9d3a5b1e6c3cacfebcb6908bfd40260f4a1bb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/Mini-API-Dump.json",
+      "resolved_url": "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/Mini-API-Dump.json",
+      "size": 2864837,
+      "sha256": "5f4e3f49d8c21361975ef92e64a109ccab98e5b4d75c74c2b2f0dd8453f79c95"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/API-Dump.json",
+      "resolved_url": "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/API-Dump.json",
+      "size": 7558718,
+      "sha256": "890b70c4a8c7b7ef739117e017742e49699b1a18d958c314fae729b1324a9997"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/Full-API-Dump.json",
+      "resolved_url": "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/Full-API-Dump.json",
+      "size": 8325110,
+      "sha256": "6693d3bc0ad6457adf4251156727f2e718e8cd39e2066416596413abe68e0b75"
+    },
+    {
+      "url": "https://clientsettings.roblox.com/v2/client-version/WindowsStudio64/channel/LIVE",
+      "resolved_url": "https://clientsettings.roblox.com/v2/client-version/WindowsStudio64/channel/LIVE",
+      "size": 103,
+      "sha256": "457bfb5863a38d1ef82a175c10a6ab146fa0611ebcc2084f6434b6e4389111d7"
+    },
+    {
+      "url": "https://gitlab.com/upio/cobalt/-/raw/main/Assets/Inter.ttf",
+      "resolved_url": "https://gitlab.com/upio/cobalt/-/raw/main/Assets/Inter.ttf",
+      "size": 874708,
+      "sha256": "0be2399ea925f1f83ff974764761da9860ec50742ed29a5d4c1ffd0c5c7ac3a8"
+    },
+    {
+      "url": "https://gitlab.com/upio/cobalt/-/raw/main/Assets/IBMPlexMono.ttf",
+      "resolved_url": "https://gitlab.com/upio/cobalt/-/raw/main/Assets/IBMPlexMono.ttf",
+      "size": 133796,
+      "sha256": "ab08018ccd276b79fb2c636bb95b9c543598f9d50505fe92506fcb4dae7810cd"
+    },
+    {
+      "url": "https://gitlab.com/upio/cobalt/-/raw/main/Assets/Logo.png",
+      "resolved_url": "https://gitlab.com/upio/cobalt/-/raw/main/Assets/Logo.png",
+      "size": 2540,
+      "sha256": "73e29acec3fe073ac4b94702764081284d42b7dca82e4b4c529cba4eee3100aa"
+    },
+    {
+      "url": "https://robloxapi.github.io/ref/icons/dark/RemoteEvent.png",
+      "resolved_url": "https://robloxapi.github.io/ref/icons/dark/RemoteEvent.png",
+      "size": 952,
+      "sha256": "b5ad8631b4354624eaeb201402c7c2b402cf77c9a2ac8236ad5239c311b1cf31"
+    },
+    {
+      "url": "https://robloxapi.github.io/ref/icons/dark/UnreliableRemoteEvent.png",
+      "resolved_url": "https://robloxapi.github.io/ref/icons/dark/UnreliableRemoteEvent.png",
+      "size": 1263,
+      "sha256": "fd1b555bd49c81300aa20abdc940cc7ecb48745a7eb5026489b8fed64f50b8cf"
+    },
+    {
+      "url": "https://robloxapi.github.io/ref/icons/dark/RemoteFunction.png",
+      "resolved_url": "https://robloxapi.github.io/ref/icons/dark/RemoteFunction.png",
+      "size": 875,
+      "sha256": "610a9fe2be6d4a7bd642b238e278ed8742add5d7f4e19747f3f1fb2b2e97dc18"
+    },
+    {
+      "url": "https://robloxapi.github.io/ref/icons/dark/BindableEvent.png",
+      "resolved_url": "https://robloxapi.github.io/ref/icons/dark/BindableEvent.png",
+      "size": 875,
+      "sha256": "a5a2025f90691a406712aa45badafe3715ee138ab6e5b7f3a50b194c6f382feb"
+    },
+    {
+      "url": "https://robloxapi.github.io/ref/icons/dark/BindableFunction.png",
+      "resolved_url": "https://robloxapi.github.io/ref/icons/dark/BindableFunction.png",
+      "size": 734,
+      "sha256": "887e2adf0e48e29c2b3b699998142d68e20a3f02e84ab61efd446cc7c3c40031"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Implementations.lua",
+      "resolved_url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Implementations.lua",
+      "size": 1429,
+      "sha256": "e5068ddb3acfcb4b4e10b4542a1d24ea540b69af31afc4ab29eaf7c291e00dc1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Reader.lua",
+      "resolved_url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Reader.lua",
+      "size": 1858,
+      "sha256": "935158e7a2222b7097043d89a23ad0de627f873851c7a3c6a53297a8b4a8bc21"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Strings.lua",
+      "resolved_url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Strings.lua",
+      "size": 994,
+      "sha256": "b4bf0e77439ee8153ca8a7c0335631c0b6b4dc940e6d98f1bdc31164bf42eba6"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Luau.lua",
+      "resolved_url": "https://raw.githubusercontent.com/AZYsGithub/Advanced-Decompiler-V3/main/Luau.lua",
+      "size": 32819,
+      "sha256": "da106dc1dcd694d8111ab7fe98f0d5a178b693c202ef5ff9f53dd316071c58df"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/d64d9e669ba2b9aad9491dbbf6a8443b3ffd173d/spritesheets/1.png",
+      "resolved_url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/d64d9e669ba2b9aad9491dbbf6a8443b3ffd173d/spritesheets/1.png",
+      "size": 488841,
+      "sha256": "79f22be803592a8fb3f3b8638d55ff45b9ff6e9fea3fd6cb7083d199219f33dd"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/d64d9e669ba2b9aad9491dbbf6a8443b3ffd173d/spritesheets/2.png",
+      "resolved_url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/d64d9e669ba2b9aad9491dbbf6a8443b3ffd173d/spritesheets/2.png",
+      "size": 82149,
+      "sha256": "90c5af0686d896aa3580ca7a6ff277491e5045b0190ac4eb9ed0fe5c7d687934"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/d64d9e669ba2b9aad9491dbbf6a8443b3ffd173d/fonts/lucide.ttf",
+      "resolved_url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/d64d9e669ba2b9aad9491dbbf6a8443b3ffd173d/fonts/lucide.ttf",
+      "size": 903264,
+      "sha256": "c75eae3390ccda7ae56a4b57354a6091170f523daf63fc458bbf0219c824f9e1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/Highlight.lua",
+      "resolved_url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/Highlight.lua",
+      "size": 17627,
+      "sha256": "b39deae3075a1aee36a3a68d7720ce5bcde1682e566590a60df942d9c12800c0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/UpdateLog.lua",
+      "resolved_url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/UpdateLog.lua",
+      "size": 13,
+      "sha256": "37582137c64530e19cc2cd74d8798718d55cacff0422bd4ed396cef1d87a06f7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/highlight.lua",
+      "resolved_url": "https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/highlight.lua",
+      "size": 18927,
+      "sha256": "3c58cda4c34fb764394a5a45da1d4df9a625b4bb25f23c592e4761d5a4c9ddaa"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tlredz/iy-remake/refs/heads/main/backups/remotespy/update.txt",
+      "resolved_url": "https://raw.githubusercontent.com/tlredz/iy-remake/refs/heads/main/backups/remotespy/update.txt",
+      "size": 12,
+      "sha256": "1008e97ce0b1bd88d365c66d1473f7bbab84d28b77ca81574ee75d3b89ba9db8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AZYsGithub/DexPlusPlus/main/LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/AZYsGithub/DexPlusPlus/main/LICENSE",
+      "size": 1063,
+      "sha256": "d9f33377c02eb443bd4b5a3c321330b75f9a011a938432b8b8e07e42d4c9a496"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/luau/UniversalSynSaveInstance/main/LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/luau/UniversalSynSaveInstance/main/LICENSE",
+      "size": 34869,
+      "sha256": "94294715af18fa90f333599bfa9a88ad4ea05823d70040b9f34c89a84b91cf82"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/main/LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/notpoiu/lucide-roblox-direct/main/LICENSE",
+      "size": 1070,
+      "sha256": "0ce26c4ef91c14a05c62e754dae806f8391ac81109436e6b7c3aec87ac82d5fb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/78n/SimpleSpy/main/LICENSE",
+      "size": 806,
+      "sha256": "1b4d96e9a4dacf8c0dfbe86962b445de205911c10acae57434bfaf48313a1c45"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/daily3014/rbx-algorithms/main/LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/daily3014/rbx-algorithms/main/LICENSE",
+      "size": 1062,
+      "sha256": "6e6a3fffe702b5a7cd4b81d2ea100c03e3c4177683c0d0e9f5d7332cad0f597c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/RiskoZS/llz4/main/LICENSE",
+      "resolved_url": "https://raw.githubusercontent.com/RiskoZS/llz4/main/LICENSE",
+      "size": 1073,
+      "sha256": "b5ab0f6f3a2d2c90bb11ef05c5292beaed20ba156803cb1010c1d5d727c16366"
+    }
+  ]
+}

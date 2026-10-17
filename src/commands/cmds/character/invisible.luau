@@ -1,0 +1,98 @@
+local function applyInvisible(self, garbage)
+    local character = self.playerService:getCharacter()
+
+    if not character then
+        return
+    end
+
+    for _, object in character:GetDescendants()do
+        if (object:IsA('BasePart') or object:IsA('Decal')) and garbage.originals[object] == nil then
+            garbage.originals[object] = object.Transparency
+            object.Transparency = 1
+        end
+    end
+end
+local function startInvisible(self)
+    local previous = self:getGarbage('invisible')
+
+    if previous and previous.connection and previous.connection.Connected then
+        self:notify('Invisible', 'you are already invisible')
+
+        return
+    end
+
+    local originals = {}
+
+    if previous then
+        originals = previous.originals or {}
+
+        self:collectGarbage('invisible')
+
+        if previous.connection then
+            previous.connection:Disconnect()
+        end
+    end
+
+    local garbage = self:createGarbage('invisible')
+
+    garbage.originals = originals
+
+    applyInvisible(self, garbage)
+
+    garbage.connection = self:connect(self.localPlayer.CharacterAdded, function()
+        applyInvisible(self, garbage)
+    end)
+
+    self:notify('Invisible', 'other players can no longer see your character')
+end
+local function stopInvisible(self)
+    local garbage = self:collectGarbage('invisible')
+
+    if not garbage then
+        return false
+    end
+    if garbage.connection then
+        garbage.connection:Disconnect()
+    end
+
+    for object, transparency in garbage.originals do
+        if object.Parent then
+            object.Transparency = transparency
+        end
+    end
+
+    return true
+end
+
+return {
+    {
+        action = 'invisible|invis',
+        description = 'Makes you invisible to other players',
+        run = function(self)
+            startInvisible(self)
+        end,
+    },
+    {
+        action = 'visible|vis|uninvisible',
+        description = 'Makes you visible to other players',
+        run = function(self)
+            if not stopInvisible(self) then
+                self:notify('Visible', 'you are already visible')
+            end
+        end,
+    },
+    {
+        action = 'toggleinvis',
+        description = 'Toggles invisibility',
+        run = function(self)
+            self:run(if self:hasGarbage('invisible')then'visible'else'invisible')
+        end,
+    },
+    {
+        action = 'toolinvisible|toolinvis|tinvis',
+        description = 'Makes you invisible to other players and able to use tools',
+        run = function(self)
+            startInvisible(self)
+        end,
+    },
+}

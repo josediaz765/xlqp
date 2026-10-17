@@ -1,0 +1,5 @@
+dist/
+compiled.luau
+__pycache__/
+*.pyc
+work/

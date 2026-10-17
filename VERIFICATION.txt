@@ -1,0 +1,181 @@
+LATEST: DISCORD INVITE AND FRESH PUBLIC REPOSITORY
+Changed branch/fields: main / Discord link https://discord.gg/dFpeqN4UHk; README loadstring uses the plain loader.luau URL; current generated package revision ee11e593fd882a83. The repository is recreated with one parentless initial commit after validation and a local history backup. Only the latest startup package is retained in this fresh repository.
+
+Plain loadstring:
+loadstring(game:HttpGet("https://raw.githubusercontent.com/josediaz765/xlqp/main/loader.luau"))()
+
+Command: python tools/test_startup.py --runtime luau --expect-fast
+Literal stdout:
+MEASURE: startup corpus (303 modules, 23 assets); cold HTTP=1; repeat HTTP=0; outer loader request excluded
+PASS: one startup download; warm source cache; lazy optional scripts; teleport; base isolation; HTTP/payload retry
+PASS: local loader remains offline
+Exit status: 0
+Command: python tools/verify.py --compiler luau-compile --runtime luau
+Literal stdout:
+PASS: startup payload matches 328 files; 1077131 bytes; revision=ee11e593fd882a83
+PASS: 368 source files compile; XLQP branding; upstream notice preserved under LICENSES
+PASS: local loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=0
+PASS: hosted loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=99
+Exit status: 0
+The only application source change is the Discord configuration. Existing prefix, filtering, API routing and other module sources are preserved. Prior test records below document those features; physical/in-game testing limits still apply.
+
+PREVIOUS: DEX JSON ROUTING, PREFIX FOCUS AND LIVE COMMAND FILTERING
+Changed branch/fields: main / API-dump resource routing; processed prefix input; immediate native focus; matching command rows and filtered scroll bounds; startup revision 36370911f2bec0f6.
+Reference reviewed: https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
+Reference behavior: next-frame prefix CaptureFocus and case-insensitive matching/hiding of command-list entries.
+
+BASELINE (8bc42af01d7bd119e054497b97790e09926c09d8)
+Command: python tools/test_resources.py --runtime luau --revision 8bc42af01d7bd119e054497b97790e09926c09d8
+Result: Can't parse JSON
+Command: python tools/test_input.py --runtime luau --revision 8bc42af01d7bd119e054497b97790e09926c09d8
+Result: Semicolon did not reveal/focus command input
+Command: python tools/test_input.py --runtime luau --case filter --revision 8bc42af01d7bd119e054497b97790e09926c09d8
+Result: Typing dex does not filter unrelated command rows
+Each baseline command exits 1, as expected.
+
+MODIFIED
+Command: python tools/test_resources.py --runtime luau
+Literal stdout:
+PASS: yielding Cobalt fetch/load; aliases and cache; empty/missing files; network retry; concurrent callers
+PASS: Dex version-prefixed API URLs return JSON; full dump/query strings; plain version endpoint remains text
+Exit status: 0
+Command: python tools/test_input.py --runtime luau
+Literal stdout:
+PASS: keyboard input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+PASS: mobile input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+Exit status: 0
+Command: python tools/test_input.py --runtime luau --case filter
+Literal stdout:
+PASS: keyboard live command filtering, aliases, literal text, empty results, clear/reset, filtered scrolling
+PASS: mobile live command filtering, aliases, literal text, empty results, clear/reset, filtered scrolling
+Exit status: 0
+Input fixtures include a dock whose settle callback never fires, a minimized window, processed prefix events, saved prefix rebinding, other-textbox isolation and an already visible command list.
+
+Command: python tools/test_startup.py --runtime luau --expect-fast
+Literal stdout:
+MEASURE: startup corpus (303 modules, 23 assets); cold HTTP=1; repeat HTTP=0; outer loader request excluded
+PASS: one startup download; warm source cache; lazy optional scripts; teleport; base isolation; HTTP/payload retry
+PASS: local loader remains offline
+Exit status: 0
+Command: python tools/verify.py --compiler luau-compile --runtime luau
+Literal stdout:
+PASS: startup payload matches 328 files; 1077128 bytes; revision=36370911f2bec0f6
+PASS: 369 source files compile; XLQP branding; upstream notice preserved under LICENSES
+PASS: local loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=0
+PASS: hosted loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=99
+Exit status: 0
+Full resource validation explicitly reads every optional file and checks actual API snapshot JSON/routing; its 99 requests are not the startup count.
+
+ROLLBACK
+Baseline restored into a separate copy. Original SHA256 values for the loader and four modified application modules match the restored files. All three baseline errors return on that copy (expected exit 1). Main checkout retains the fixes.
+Actual in-game Dex initialization, physical devices and in-game elapsed startup time were not tested. Fixture UI startup is mocked/intercepted. Existing older startup packages remain available for cached loaders.
+
+PREVIOUS: FAST HOSTED STARTUP
+Changed branch/fields: main / versioned startup package, source-byte cache scoped by base URL and revision; stable request version; modular sources retained.
+
+BASELINE
+Command: python tools/test_startup.py --runtime luau --revision 55852f2ba7f86775d1d11bfef43c8a84107f98ac --expect-fast
+Input: 303 application modules and 23 assets through the actual loader/resolver; Roblox module execution stubbed; HTTP yields.
+Literal stdout:
+MEASURE: startup corpus (303 modules, 23 assets); cold HTTP=328; repeat HTTP=328; outer loader request excluded
+Result: Startup still downloads individual modules
+Exit status: 1 (expected old loader fails request budget).
+
+MODIFIED
+Command: python tools/test_startup.py --runtime luau --expect-fast
+Literal stdout:
+MEASURE: startup corpus (303 modules, 23 assets); cold HTTP=1; repeat HTTP=0; outer loader request excluded
+PASS: one startup download; warm source cache; lazy optional scripts; teleport; base isolation; HTTP/payload retry
+PASS: local loader remains offline
+Exit status: 0
+
+Command: python tools/verify.py --compiler luau-compile --runtime luau
+Literal stdout:
+PASS: startup payload matches 328 files; 1076641 bytes; revision=a3d60ca1af3d3df4
+PASS: 368 source files compile; XLQP branding; upstream notice preserved under LICENSES
+PASS: local loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=0
+PASS: hosted loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=99
+Exit status: 0
+The full-resource test explicitly downloads every optional resource; its 99 requests are not the startup request count.
+
+Command: python tools/test_input.py --runtime luau
+Literal stdout:
+PASS: keyboard input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+PASS: mobile input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+Exit status: 0
+
+Command: python tools/test_resources.py --runtime luau
+Literal stdout:
+PASS: yielding Cobalt fetch/load; aliases and cache; empty/missing files; network retry; concurrent callers
+Exit status: 0
+
+ROLLBACK
+Baseline restored into a separate copy and its loader bytes compared with the baseline Git blob. Running the startup budget test on that copy restores 328 cold/repeat requests and the expected exit 1. Main checkout retains the fix.
+
+The outer loader URL request is excluded. The fast hosted path uses one outer request plus one package download on a cold run, and just the outer request on a repeat run in the same getgenv session. Roblox live services and user-selected optional tools remain separate. Counts are fixture measurements; actual in-game elapsed time and physical devices were not tested.
+Generated package freshness is checked against every packaged module/asset. Source files remain modular; run python tools/build_startup.py after editing them. Optional vendor/backups remain lazy. Module execution and cleanup still run on each execution; only source bytes are shared.
+
+PREVIOUS: RESOURCE YIELD FIX AND SCREENSHOT BRANDING
+Changed branch/fields: main / resources.lookup now performs yielding file reads in an ordinary function; entries is a plain cache. Image titles now read XLQP Inf Yield. Generated PNG paths replace JPEG paths; legacy resource keys remain valid.
+
+BASELINE
+Command: python tools/test_resources.py --runtime luau --revision 140da38df9783dff13bae60c15ef64469ad53f62
+Input: a Cobalt fetch/load whose repository reader yields like HTTP.
+Result: attempt to yield across metamethod/C-call boundary
+Exit status: 1 (expected original failure).
+
+MODIFIED
+Command: python tools/test_resources.py --runtime luau
+Literal stdout:
+PASS: yielding Cobalt fetch/load; aliases and cache; empty/missing files; network retry; concurrent callers
+Exit status: 0
+
+Command: python tools/verify.py --compiler luau-compile --runtime luau
+Literal stdout:
+PASS: 367 source files compile; XLQP branding; upstream notice preserved under LICENSES
+PASS: local loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=0
+PASS: hosted loader; 430 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=430
+Exit status: 0
+
+Command: python tools/test_input.py --runtime luau
+Literal stdout:
+PASS: keyboard input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+PASS: mobile input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+Exit status: 0
+
+ROLLBACK
+Restored Git tree 140da38df9783dff13bae60c15ef64469ad53f62 into a separate copy; original resource/image hashes match.
+The resource test against that copy restores the original metamethod yield failure (exit 1). The main checkout retains the fix.
+
+The built-in image generator edited the two screenshots with RV titles. Titles, command text and layout were visually checked; output raster sizes are larger than the originals. Reference/server screenshots match their original bytes.
+The resource fixture uses actual resources/fetchService modules and real Luau coroutine suspension. Full in-game executor behavior and physical devices have not been tested.
+
+PREVIOUS INPUT VERIFICATION
+Changed branch/fields: main / prefix listener; native command TextBox.Active, Interactable, TextEditable, TextSize, ShowNativeInput, geometry and parent; native caret; title-bar drag handle; red/purple/green text tokens; per-run hosted-source cache key.
+Reference reviewed: https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
+Reference behavior: a normal visible command TextBox, next-frame prefix focus, and native FocusLost submission.
+
+BASELINE
+Command: python tools/test_input.py --runtime luau --revision 5fd133bfd92013bb6e6e5c7c7f93705ee5f8f1dd
+Result: Native command textbox is disabled
+Exit status: 1 (expected failure reproduced).
+
+MODIFIED
+Command: python tools/test_input.py --runtime luau
+Literal stdout:
+PASS: keyboard input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+PASS: mobile input, semicolon/rebind, native text, Tab, Enter/send, focus isolation, red/purple/green text
+Literal stderr: (empty)
+Exit status: 0
+
+Command: python tools/verify.py --compiler luau-compile --runtime luau
+Literal stdout:
+PASS: 367 source files compile; XLQP branding; upstream notice preserved under LICENSES
+PASS: local loader; 428 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=0
+PASS: hosted loader; 428 resource mappings; 361 lazy sources compile; teleport continuation returns 42; HTTP requests=430
+Literal stderr: (empty)
+Exit status: 0
+
+The input fixtures exercise actual command-box, prefix service, interface, drag, theme and name-color modules using Roblox GUI/signal mocks. Both keyboard and mobile configurations are covered, including editing after tap, Enter/send, Tab correction, prefix rebinds and focus isolation. Hosted-loader HTTP is served by repository file fixtures. Physical keyboards/mobile devices and full Roblox UI startup were not driven in this environment.
+
+Upstream and dependency notices remain under LICENSES/. Roblox assets, gameplay services and optional external decompiler services retain live-service behavior.
